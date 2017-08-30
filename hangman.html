@@ -84,16 +84,12 @@ document.onkeyup = function(event){
 	// console.log("arrayPositions",arrayPositions)
 
 	for (var i = 0; i <= word.length; i++) {
-		console.log("i",i)
 
 		if (word.charAt(i) === userInput){
 			wordArray[i] = userInput;
-			console.log("i",i);
-			console.log("wordArray",wordArray);
 			document.querySelector("#blank").innerHTML = wordArray;
 
 		} else if (finalWordArray.indexOf(userInput) >= 0){
-			console.log("caught ya")
 
 		} else if (missedLettersArray.indexOf(userInput) >= 0) {
 			document.querySelector("#missedLetters").innerHTML = missedLettersArray;
@@ -108,11 +104,16 @@ document.onkeyup = function(event){
 		}
 	}
 
-	if (attempts <= 0){
-	document.write("Game Over. Refresh to Try Again!")
+	console.log("wordArray",wordArray);
+	console.log("finalWordArray",finalWordArray);
 
-	if ()
-}
+	if (attempts <= 0){
+		document.write("Game Over. Refresh to Try Again!")
+	}
+
+	if(wordArray.indexOf("_ ") < 0){
+		document.write("You Win!!!")
+	}
 };
 
 

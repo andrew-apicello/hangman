@@ -2,124 +2,57 @@
 <html>
 <head>
 	<title>Hangman</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+
+	.jumbotron{
+		text-align: center;
+		/*background-color: white;*/
+		background-color: #f2ab29;
+	}
+	p{
+		text-align: center;
+	}
+	h1{
+		text-align: center;
+	}
+	.col-sm-12{
+		align-content: center;
+	}
+	
+
+</style>
+
 </head>
 
 
 <body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Big Cat Hangman</h1>
+			<h3>Guess the Name of the Exotic Feline to Win!</h3>
+		</div>
+		<div class="container col-lg-6">
+			<h1 id="blank"></h1>
+			<hr>
+			<p>Attempts Remaining</p>
+			<p id="attempts"></p>
 
-<p>hint: big cats</p>
-<p id="blank"></p>
+			<hr>
+			<p>letters used</p>
+			<p id="missedLetters"></p>
+		</div>
 
-<hr>
-<p>attempts remaining</p>
-<p id="attempts"></p>
-
-<hr>
-<p>letters used</p>
-<p id="missedLetters"></p>
-
-
-
-
-<script type="text/javascript">
-
-
-
-//select random word
-wordList = ["tiger","lion","bobcat","cougar","panther","cheetah","jaguar","linx","leopard"];
-word = wordList[Math.floor(Math.random()*wordList.length)];
-console.log(word);
-
-
-
-
-//create arrays
-wordArray = [];
-for (i = 0; i < word.length; i++){
-		wordArray.push("_ ");
-	}
-console.log("wordArray",wordArray);
-document.querySelector("#blank").innerHTML = wordArray;
-
-
-
-finalWordArray = []
-for (i = 0; i < word.length; i++){
-		finalWordArray.push(word[i]);
-	}
-console.log("finalWordArray",finalWordArray);
-
-
-
-
-
-
-missedLettersArray = []
-document.querySelector("#missedLetters").innerHTML = missedLettersArray;
-attempts = 10;
-document.querySelector("#attempts").innerHTML = attempts;
-
-
-//turn array into string
-// wordString = "";
-// console.log(wordString);
-// for(i = 0 ; i < wordArray.length ; i++){
-// 	wordString =  wordString + wordArray[i];
-// }
-
-
-
-
-
-
-document.onkeyup = function(event){
-	userInput = event.key;
-	console.log("userInput: ",userInput);
-
-
-//array.indexOf(input) ::gives the index in an array of a given input
-//finalWord  = wordArray.splice(i, 0, userInput);
-
-	// arrayPositions = wordArray.indexOf(userInput);
-	// console.log("arrayPositions",arrayPositions)
-
-	for (var i = 0; i <= word.length; i++) {
-
-		if (word.charAt(i) === userInput){
-			wordArray[i] = userInput;
-			document.querySelector("#blank").innerHTML = wordArray;
-
-		} else if (finalWordArray.indexOf(userInput) >= 0){
-
-		} else if (missedLettersArray.indexOf(userInput) >= 0) {
-			document.querySelector("#missedLetters").innerHTML = missedLettersArray;
-			document.querySelector("#attempts").innerHTML = attempts;
-
-
-		} else  {
-			missedLettersArray.push(userInput);
-			document.querySelector("#missedLetters").innerHTML = missedLettersArray;
-			attempts = attempts - 1
-			document.querySelector("#attempts").innerHTML = attempts;
-		}
-	}
-
-	console.log("wordArray",wordArray);
-	console.log("finalWordArray",finalWordArray);
-
-	if (attempts <= 0){
-		document.write("Game Over. Refresh to Try Again!")
-	}
-
-	if(wordArray.indexOf("_ ") < 0){
-		document.write("You Win!!!")
-	}
-};
-
-
-
-
-
-</script>
+		<div class="container col-lg-4 col-lg-offset-1 col-sm-12">
+			<canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
+		</div>
+		
+	</div>
+	<script type="text/javascript" src="Canvas.js"></script>
+	<script type="text/javascript" src="HangmanLogic.js"></script>
+	
 </body>
 </html>
